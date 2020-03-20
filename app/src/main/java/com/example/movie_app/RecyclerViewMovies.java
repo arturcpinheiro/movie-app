@@ -1,6 +1,7 @@
 package com.example.movie_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,20 +23,20 @@ import static android.content.ContentValues.TAG;
 public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.ViewHolder>{
 
     private ArrayList<String> movieNames;
-    private ArrayList<String> movieDescs;
+    private ArrayList<String> year;
     private ArrayList<String> imgURL;
     private Context mContext;
 
     /**
      * Constructor
      * @param movieNames
-     * @param movieDesc
+     * @param year
      * @param url
      * @param mContext
      */
-    public RecyclerViewMovies(ArrayList<String> movieNames, ArrayList<String> movieDesc, ArrayList<String> url ,Context mContext) {
+    public RecyclerViewMovies(ArrayList<String> movieNames, ArrayList<String> year, ArrayList<String> url ,Context mContext) {
         this.movieNames = movieNames;
-        this.movieDescs = movieDesc;
+        this.year = year;
         this.imgURL = url;
         this.mContext = mContext;
     }
@@ -68,14 +69,18 @@ public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.
 
         holder.movieName.setText(movieNames.get(position));
 
-        holder.movieDesc.setText(movieDescs.get(position));
+        holder.yearVH.setText(year.get(position));
 
         holder.lvLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClickL clicked on: " + movieNames.get(position));
-
                 Toast.makeText(mContext, movieNames.get(position), Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(mContext, movieInfo.class);
+                i.putExtra("movieName", movieNames.get(position));
+                i.putExtra("year", year.get(position));
+                mContext.startActivity(i);//GIVING CONTEXT WHERE THE ACTIVITY SHOULD START
             }
         });
     }
@@ -93,12 +98,12 @@ public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.
         // holds widget in memory.
         ImageView image;
         TextView movieName;
-        TextView movieDesc;
+        TextView yearVH;
         LinearLayout lvLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
-            movieDesc = itemView.findViewById(R.id.movieDesc);
+            yearVH = itemView.findViewById(R.id.movieDesc);
             movieName = itemView.findViewById(R.id.movieName);
             lvLayout = itemView.findViewById(R.id.containerLayout);
         }
