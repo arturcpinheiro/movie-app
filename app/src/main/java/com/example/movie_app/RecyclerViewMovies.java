@@ -74,7 +74,7 @@ public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.
         holder.lvLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClickL clicked on: " + movieNames.get(position));
+                Log.d(TAG, "onClickL clicked onsssssssssssssssssssssssssssssssssssssssssssssss: " + movieNames.get(position));
                 Toast.makeText(mContext, movieNames.get(position), Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(mContext, movieInfo.class);
