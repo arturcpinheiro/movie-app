@@ -74,7 +74,7 @@ public class SearchEverything extends AppCompatActivity {
         else
             flag = false;
 
-        Log.d("searchMovie()SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", Boolean.toString(flag));
+
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -99,23 +99,47 @@ public class SearchEverything extends AppCompatActivity {
                                     JSONObject jObject = arr.getJSONObject(i);
                                     if(jObject.has("media_type"))
                                     {
-
-
-                                    if (jObject.getString("media_type").contentEquals("movie")) {
+                                    if (jObject.getString("media_type").contentEquals("movie") && jObject.has("title")) {
                                         if(!(jObject.getString("poster_path").length() < 10))
                                         {
                                             movieNames.add(jObject.getString("title"));
-                                            //movieDescs.add(jObject.getString("overview"));
                                             if(jObject.getString("release_date").length() > 4)
                                                 year.add(jObject.getString("release_date").substring(0,4));
                                             else
                                                 year.add("N/A");
                                             imgURL.add("https://image.tmdb.org/t/p/w500" + jObject.getString("poster_path"));
                                         }
-                                    }}
+                                    }
+                                    //Get person related searchs
+                                    else if(jObject.getString("media_type").contentEquals("person")){
+                                        Log.d("searchMovie()SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS PERSON CALLED", "Person");
+                                        JSONArray innerArray = jObject.getJSONArray("known_for");
+                                        for (int j = 0; j < innerArray.length(); ++j) {
+                                            JSONObject innerObject = innerArray.getJSONObject(j);
+                                            Log.d("searchMovie()SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS PERSON CALLED", "ll");
+                                            if (innerObject.has("media_type") && innerObject.has("title") && innerObject.has("poster_path") && innerObject.has("release_date")) {
+
+                                                    if (innerObject.getString("media_type").contentEquals("movie")) {
+                                                        if (!(innerObject.getString("poster_path").length() < 10)) {
+                                                            if (innerObject.getString("title").length() < 1)
+                                                                movieNames.add("N/A");
+                                                            else
+                                                                movieNames.add(innerObject.getString("title"));
+                                                            //movieDescs.add(jObject.getString("overview"));
+                                                            if (innerObject.getString("release_date").length() > 4)
+                                                                year.add(innerObject.getString("release_date").substring(0, 4));
+                                                            else
+                                                                year.add("N/A");
+                                                            imgURL.add("https://image.tmdb.org/t/p/w500" + innerObject.getString("poster_path"));
+                                                        }
+                                                    }
+                                            }
+                                        }
+                                    }
+                                    }
                                     else if(flag == true)
                                     {
-                                        if(!(jObject.getString("poster_path").length() < 10))
+                                        if(!(jObject.getString("poster_path").length() < 10) && jObject.has("title"))
                                         {
                                             movieNames.add(jObject.getString("title"));
                                             //movieDescs.add(jObject.getString("overview"));
