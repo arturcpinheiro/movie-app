@@ -11,6 +11,7 @@
 2. Download and extract the folder, "movie-app-master", from gitHub - https://github.com/arturcpinheiro/movie-app
 3. on Android studio, at the top left side, press "File", then "open"
 4. Find the folder "movie-app-master", which has a slightly different icon, and open it. 
+5. Wait for every plugin to be installed (there should be a download bar at the bottom).
 **If you do not have an emulator installed in the Android studio, go to: "Instructions to download Android Emulator".**
 5. in the top right part, press the green play button.
 
@@ -18,7 +19,8 @@
 ## Instructions to download Android Emulator:
 **IMPORTANT: Make sure you have opened the project before installing the
 emulator**
-1. Go to Tools->SDK Manager
+1. Go to Tools->SDK Manager.
+** You can also go to "file"-> "Settings" -> in the search bar, type SDK and it will have the same effect.**
 2. In SDK Plaforms, click on the check box for the latest Android Operating System (use Android 10.0 (Q) for this example).
 3. In SDK Tools, select Android Emulator and Android SDK Platform-Tools.
 4. If you have an Intel processor, select Intel x86 Emulator Accelerator (HAXM installer)
