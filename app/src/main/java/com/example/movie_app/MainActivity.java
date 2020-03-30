@@ -1,34 +1,35 @@
+/**
+ * Assignment 2
+ * @author  Kyle Alialy & Artur Pinheiro
+ * @version 1.0
+ * @since 03/20/2020
+ */
 package com.example.movie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import okhttp3.*;
 
 public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    /**
+     * Method that runs when the file is running.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Method will get user input, then send the next page with input data.
+     * @param view
+     */
     public void useSearch(View view){
         if(view.getId() == R.id.search)
         {

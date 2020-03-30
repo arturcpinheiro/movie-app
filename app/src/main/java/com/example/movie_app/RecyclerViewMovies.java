@@ -1,3 +1,9 @@
+/**
+ * Assignment 2
+ * @author  Kyle Alialy & Artur Pinheiro
+ * @version 1.0
+ * @since 03/20/2020
+ */
 package com.example.movie_app;
 
 import android.content.Context;
