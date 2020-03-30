@@ -5,7 +5,7 @@ Instructions:
 2. Download and extract the folder, "movie-app-master", from gitHub - https://github.com/arturcpinheiro/movie-app.
 3. on Android studio, at the top left side, press "File", then "open".
 4. find the folder "movie-app-master", which has a slightly different icon, and open it.
-4-1. If you do not have an emulator installed in the Android studio, go to: "Instructions to download Android Emulator".
+4a. If you do not have an emulator installed in the Android studio, go to: "Instructions to download Android Emulator".
 5. in the top right part, press the green play button.
 
 Instruction for using the app:
