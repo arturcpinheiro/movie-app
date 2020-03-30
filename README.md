@@ -19,8 +19,8 @@
 ## Instructions to download Android Emulator:
 **IMPORTANT: Make sure you have opened the project before installing the
 emulator**
-1. Go to Tools->SDK Manager.
-**You can also go to "file"-> "Settings" -> in the search bar, type SDK and it will have the same effect.**
+1. Go to Tools->SDK Manager 
+**(You can also go to "file"-> "Settings" -> in the search bar, type SDK and it will have the same effect)**.
 2. In SDK Plaforms, click on the check box for the latest Android Operating System (use Android 10.0 (Q) for this example).
 3. In SDK Tools, select Android Emulator and Android SDK Platform-Tools.
 4. If you have an Intel processor, select Intel x86 Emulator Accelerator (HAXM installer)
