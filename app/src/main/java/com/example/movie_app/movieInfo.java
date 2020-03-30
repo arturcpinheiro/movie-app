@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,12 +35,19 @@ public class movieInfo extends AppCompatActivity {
     String posterURL;
 
     @Override
+    /**
+     * Method that runs when the file is running.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
         getIncomeIntent();
     }
 
+    /**
+     * This method is responsible for receiving data from the last page,
+     * checking if data exists.
+     */
     private void getIncomeIntent() {
         //check if intent has EXTRAS
         if (getIntent().hasExtra("movieName")) {
@@ -57,12 +63,18 @@ public class movieInfo extends AppCompatActivity {
         }
     }
 
+    /**
+     * this method searches for a movie based on the title and the year
+     * @param s - the full title of the movie
+     * @param x - the release date (year) of the movie
+     * @throws IOException
+     */
     public void searchMovie(String s, String x) throws IOException {
         Log.d("searchMovie()", "FOUND, WORKING");
         String data = "";
         final URL url;
         if(x.equals("N/A"))
-           url  = new URL("https://www.omdbapi.com/?apikey=974f8ce1&t="+ s.replace(' ', '+'));
+            url  = new URL("https://www.omdbapi.com/?apikey=974f8ce1&t="+ s.replace(' ', '+'));
         else
             url = new URL("https://www.omdbapi.com/?apikey=974f8ce1&t="+ s.replace(' ', '+')+"&y=" + x);
         OkHttpClient client = new OkHttpClient();
@@ -87,21 +99,21 @@ public class movieInfo extends AppCompatActivity {
                             try {
                                 JSONObject jObject = new JSONObject(myResponse);
 
-                                        title = "Title: " + jObject.getString("Title");
-                                        rYear = "Year: " + jObject.getString("Year");
-                                        runtime = "Runtime: " + jObject.getString("Runtime");
-                                        genre = "Genre: " + jObject.getString("Genre");
-                                        actors = "Actors: " + jObject.getString("Actors");
-                                        writers = "Writers: " + jObject.getString("Writer");
-                                        directors = "Directors: " + jObject.getString("Director");
-                                        description = "Plot: " + jObject.getString("Plot");
-                                        posterURL = jObject.getString("Poster");
-                                        metascore = "MetaScore: " + jObject.getString("Metascore");
-                                        imdbRating = "IMDBrating: " + jObject.getString("imdbRating");
-                                        setImage(posterURL, title ,description, rYear, actors, writers);
+                                title = jObject.getString("Title") + " (" + jObject.getString("Year") + ")";
+                                //rYear = "Year: " + jObject.getString("Year");
+                                runtime = "Runtime: " + jObject.getString("Runtime");
+                                genre = "Genre: " + jObject.getString("Genre");
+                                actors = "Actors: " + jObject.getString("Actors");
+                                writers = "Writers: " + jObject.getString("Writer");
+                                directors = "Directors: " + jObject.getString("Director");
+                                description = "Plot: " + jObject.getString("Plot");
+                                posterURL = jObject.getString("Poster");
+                                metascore = "MetaScore: " + jObject.getString("Metascore") + "/100";
+                                imdbRating = "IMDBrating: " + jObject.getString("imdbRating") + "/10";
+                                setImage(posterURL, title ,description, rYear, actors, writers, imdbRating, metascore);
                                 Log.d("SEARCHMOVIEEEEE()", title);
 
-                                } catch (JSONException ex) {
+                            } catch (JSONException ex) {
                                 ex.printStackTrace();
                             }
 
@@ -112,12 +124,26 @@ public class movieInfo extends AppCompatActivity {
         });
     }
 
-    private void setImage(String imageURL, String title ,String movieDescription, String year, String actors, String writers){
+    /**
+     * this method is to set the parameters to an ImageView or TextView
+     * used to display the values in the screen
+     * @param imageURL
+     * @param title
+     * @param movieDescription
+     * @param year
+     * @param actors
+     * @param writers
+     * @param imbdRating
+     * @param metascore
+     */
+    private void setImage(String imageURL, String title ,String movieDescription, String year, String actors, String writers, String imbdRating, String metascore){
         Log.d("setImage()", "setImage, WORKING");
         TextView name = findViewById(R.id.movieName);
         name.setText(title);
-        TextView mvYear = findViewById(R.id.movieYear);
-        mvYear.setText(year);
+        TextView imbd = findViewById(R.id.imbd);
+        imbd.setText(imdbRating);
+        TextView meta = findViewById(R.id.meta);
+        meta.setText(metascore);
         TextView mvActors = findViewById(R.id.movieActors);
         mvActors.setText(actors);
         TextView mvWriters = findViewById(R.id.movieWriters);

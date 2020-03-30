@@ -2,8 +2,6 @@ package com.example.movie_app;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,9 +18,7 @@ import java.util.ArrayList;
 import okhttp3.*;
 
 public class SearchEverything extends AppCompatActivity {
-    private String userInput = "";
     private ArrayList<String> movieNames = new ArrayList<>();
-    //private ArrayList<String> movieDescs = new ArrayList<>();
     private ArrayList<String> year = new ArrayList<>();
     private ArrayList<String> imgURL = new ArrayList<>();
 
