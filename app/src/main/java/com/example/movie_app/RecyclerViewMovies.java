@@ -63,7 +63,9 @@ public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.
     }
 
     /**
-     *
+     *  This method is responsible to bind each holder object to the items of ArrayList,
+     *  it will go to the next page, and pass the information of the list item you click(the object)
+     *  to the next page.
      * @param holder
      * @param position
      */
@@ -100,6 +102,10 @@ public class RecyclerViewMovies extends RecyclerView.Adapter<RecyclerViewMovies.
         return movieNames.size();
     }
 
+    /**
+     * Class that will hold the data and it will receive the items of the ArrayList
+     * and create each list item in the user view.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         // holds widget in memory.
         ImageView image;
